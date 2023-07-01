@@ -22,8 +22,9 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 - Create VM (Windows and Linux [Ubuntu])
 - Download, Install, and Run Wireshark
-- PowerShell 
-- Step 4
+- PowerShell (Ping)
+- Change VM-2's Firewall Settings
+- 
 
 <h2>Actions and Observations</h2>
 
@@ -56,18 +57,16 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <br />
 
 <p align="center">
-<img src="" height="70%" width="70%" alt=""/>
+<img src="https://i.imgur.com/B50rUAo.png" height="50%" width="30%" alt="VM-2's Firewall Settings"/> <img src="https://i.imgur.com/vUtl66l.png" height="80%" width="40%" alt="VM-2's Firewall Settings"/>
 </p>
-<p>
-Description
+<p> Go to Network Security Groups in Microsoft Azure. Select VM-2. In the Inbound Security Rules, Add Rule. Source: Any, Source Port Range: Any (*), Destination: Any, Service: Custom, Destination Port: Protocol ICMP, Action: Denied, Priority: 200, Name: DenyAnyCustomAnyInbound. (Priority is set at 200 to affect before the SSH protocol.)
 </p>
 <br />
 
 <p align="center">
 <img src="" height="70%" width="70%" alt=""/>
 </p>
-<p>
-Description
+<p> Go to VM-1. Look at the affect that changing VM-2’s Firewall had on PowerShell and Wireshark. (PowerShell - Request Timed Out. Wireshark - No Response Found)
 </p>
 <br />
 

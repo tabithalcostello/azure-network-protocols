@@ -10,7 +10,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 - Microsoft Azure (Virtual Machines/Compute)
 - Microsoft Remote Desktop
 - Command-Line Tools
-- Network Protocols (SSH, RDH, DNS, HTTP/HTTPS, ICMP)
+- Network Protocols (SSH, RDP, DNS, HTTP/HTTPS, ICMP)
 - Wireshark (Protocol Analyzer)
 
 <h2>Operating Systems Used </h2>
@@ -23,7 +23,8 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 - Create VM (Windows and Linux [Ubuntu])
 - Download, Install, and Run Wireshark
 - PowerShell (Ping)
-- Change VM-2's Firewall Settings
+- Change VM-2's Firewall Settings and View Changes in PowerShell + Wireshark
+- Connect to VM-2 via SSH
 - 
 
 <h2>Actions and Observations</h2>
@@ -64,25 +65,30 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <br />
 
 <p align="center">
-<img src="" height="70%" width="70%" alt=""/>
+<img src="https://i.imgur.com/JnQOgCg.png" height="70%" width="40%" alt="PowerShell Change"/> <img src="https://i.imgur.com/cmm5vcA.png" height="70%" width="40%" alt="Wireshark Change"/>
 </p>
-<p> Go to VM-1. Look at the affect that changing VM-2’s Firewall had on PowerShell and Wireshark. (PowerShell - Request Timed Out. Wireshark - No Response Found)
-</p>
-<br />
-
-<p align="center">
-<img src="" height="70%" width="70%" alt=""/>
-</p>
-<p>
-Description
+<p> Go to VM-1. View how changing VM-2’s Firewall affected PowerShell and Wireshark. (PowerShell - Request Timed Out. Wireshark - No Response Found)
 </p>
 <br />
 
 <p align="center">
-<img src="" height="70%" width="70%" alt=""/>
+<img src="https://i.imgur.com/uluQ9M9.png" height="70%" width="40%" alt="Return PowerShell"/> <img src="https://i.imgur.com/2oheare.png" height="70%" width="40%" alt="Return Wireshark"/>
 </p>
-<p>
-Description
+<p> Go back to the Network Security Groups in Microsoft Azure. Select VM-2. In the Inbound Security Rules, change DenyAnyCustomInbound rule to Allow ICMP traffic, or delete DenyAnyCustomInbound rule. Return to PowerShell and Wireshark to view the changes. 
+</p>
+<br />
+
+<p align="center">
+<img src="https://i.imgur.com/p9gXn3T.png" height="70%" width="70%" alt="Connecting to VM-2 Through SSH"/>
+</p>
+<p> Connect to VM-2 with SSH. Go to Wireshark and change the filter from ICMP to SSH. In PowerShell, type ssh (username created in VM-2)@(VM-2's private ip address). For instance, ssh labuser@10.0.0.5. When prompted to continue connecting, select yes. The next “PS C:\Users\labuser” enter Password created in VM-2. (Note: Your password may not be visible.)
+</p>
+<br />
+
+<p align="center">
+<img src="https://i.imgur.com/oAL48Je.png" height="70%" width="70%" alt="SSH Traffic"/>
+</p>
+<p> Following the connection to the Ubuntu (Linux) Server, there is a Linux command line "labuser@VM-2: $". Using Linux commands such as "id", "uname -a", and "ls -lasth", we can view this SSH traffic in Wireshark. 
 </p>
 <br />
 

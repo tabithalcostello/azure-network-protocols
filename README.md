@@ -23,9 +23,11 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 - Create VM (Windows and Ubuntu Server [Linux])
 - Download, Install, and Run Wireshark
 - PowerShell (Ping)
+- Monitor Internet Control Message Protocol (ICMP) Traffic
 - Change VM-2's Firewall Settings and View Changes in PowerShell + Wireshark
-- Connect to VM-2 via SSH and Monitor SSH Traffic on Wireshark
-- Monitor DHCP Traffic
+- Connect to VM-2 via SecureShell Protocol (SSH) and Monitor SSH Traffic on Wireshark
+- Monitor Dynamic Host Configuration Protocol (DHCP) Traffic
+- Monitor Domain Name System (DNS) Traffic
 
 <h2>Actions and Observations</h2>
 
@@ -102,15 +104,14 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p align="center">
 <img src="https://i.imgur.com/c5ESUsc.png" height="80%" width="40%" alt="DHCP Traffic on PowerShell"/> <img src="https://i.imgur.com/JnqIzty.png" height="80%" width="40%" alt="DHCP Traffic on Wireshark"/>
 </p>
-<p> Monitor DHCP traffic. In Wireshark (VM-1), change the filter from SSH to DHCP. In PowerShell, type "ipconfig /renew". 
+<p> Monitor DHCP traffic. In Wireshark (VM-1), change the filter from SSH to DHCP. In PowerShell, type "ipconfig /renew". Then, click back into Wireshark to view the DHCP traffic. 
 </p>
 <br />
 
 <p align="center">
-<img src="" height="70%" width="70%" alt=""/>
+<img src="https://i.imgur.com/pJYyz45.png" height="60%" width="40%" alt="DNS Traffic - PowerShell"/> <img src="https://i.imgur.com/fbvkuJx.png" height="70%" width="50%" alt="DNS Traffic in Wireshark"/>
 </p>
-<p>
-Description
+<p> Monitor DNS Traffic. In Wireshark (VM-1), change the filter from DHCP to DNS. In PowerShell, type "nslookup google.com". Then, go back to Wireshark to view the DNS traffic. 
 </p>
 <br />
 

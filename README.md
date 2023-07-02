@@ -10,7 +10,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 - Microsoft Azure (Virtual Machines/Compute)
 - Microsoft Remote Desktop
 - Command-Line Tools
-- Network Protocols (SSH, RDP, DNS, HTTP/HTTPS, ICMP)
+- Network Protocols (ICMP, SSH, DHCP, DNS, UDP)
 - Wireshark (Protocol Analyzer)
 
 <h2>Operating Systems Used </h2>
@@ -28,13 +28,14 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 - Connect to VM-2 via SecureShell Protocol (SSH) and Monitor SSH Traffic on Wireshark
 - Monitor Dynamic Host Configuration Protocol (DHCP) Traffic
 - Monitor Domain Name System (DNS) Traffic
+- Monitor User Datagram Protocol (UDP) Traffic
 
 <h2>Actions and Observations</h2>
 
 <p align="center">
 <img src="https://i.imgur.com/9ERubqL.png" height="70%" width="70%" alt="VMs Created"/>
 </p>
-<p> Create two Virtual Machines (VMs) in Microsoft Azure. VM-1 will have Operating System (OS) of Windows 10 with the size of 2 virtual computer processing units (vcpus) and 18 GiB memory. VM-2 will have OS of Ubuntu also known as Linux with the 2vcpus and 16 GiB memory. (Make sure the virtual network matches VM-1's.)
+<p> Create two Virtual Machines (VMs) in Microsoft Azure. VM-1 will have Operating System (OS) of Windows 10 with the size of 2 virtual computer processing units (vcpus) and 16 GiB memory. VM-2 will have OS of Ubuntu also known as Linux with the 2vcpus and 16 GiB memory. (Make sure the virtual network matches VM-1's.)
 </p>
 <br />
 
@@ -116,33 +117,13 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <br />
 
 <p align="center">
-<img src="" height="70%" width="70%" alt=""/>
+<img src="https://i.imgur.com/V6uHCzc.png" height="43%" width="30%" alt="UDP in PowerShell"/> <img src="https://i.imgur.com/HdcsNFM.png" height="70%" width="50%" alt="UDP in Wireshark"/>
 </p>
-<p>
-Description
-</p>
-<br />
-
-<p align="center">
-<img src="" height="70%" width="70%" alt=""/>
-</p>
-<p>
-Description
+<p> Monitor UDP Traffic. In Wireshark (VM-1), change the filter from DNS to UDP. In PowerShell, type "nslookup disney.com". Then, go back to Wireshark to view the UDP traffic. In Wireshark, you can change the filters to focus on specific traffic. For instance, changing the filter from DNS to RDP (Remote Desktop Protocol). In order to do this tutorial, RDP was used to establish a connection to our VMs.
 </p>
 <br />
 
 <p align="center">
-<img src="" height="70%" width="70%" alt=""/>
-</p>
-<p>
-Description
-</p>
-<br />
-
-<p align="center">
-<img src="" height="70%" width="70%" alt=""/>
-</p>
-<p>
-Description
+<img src="https://i.imgur.com/FF3maz0.png" height="70%" width="70%" alt="Bye"/>
 </p>
 <br />

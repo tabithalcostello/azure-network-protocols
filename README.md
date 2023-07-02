@@ -20,12 +20,12 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 <h2>High-Level Steps</h2>
 
-- Create VM (Windows and Linux [Ubuntu])
+- Create VM (Windows and Ubuntu Server [Linux])
 - Download, Install, and Run Wireshark
 - PowerShell (Ping)
 - Change VM-2's Firewall Settings and View Changes in PowerShell + Wireshark
-- Connect to VM-2 via SSH
-- 
+- Connect to VM-2 via SSH and Monitor SSH Traffic on Wireshark
+- Monitor DHCP Traffic
 
 <h2>Actions and Observations</h2>
 
@@ -93,18 +93,16 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <br />
 
 <p align="center">
-<img src="" height="70%" width="70%" alt=""/>
+<img src="https://i.imgur.com/vLd8e8A.png" height="50%" width="50%" alt="Exit VM-2"/>
 </p>
-<p>
-Description
+<p> To exit out of VM-2, in the command line type "exit" and click Enter (or Return). The Linux command line returns to Vm-1's Window's Command Line of "PS C:\Users\labuser>". 
 </p>
 <br />
 
 <p align="center">
-<img src="" height="70%" width="70%" alt=""/>
+<img src="https://i.imgur.com/c5ESUsc.png" height="80%" width="40%" alt="DHCP Traffic on PowerShell"/> <img src="https://i.imgur.com/JnqIzty.png" height="80%" width="40%" alt="DHCP Traffic on Wireshark"/>
 </p>
-<p>
-Description
+<p> Monitor DHCP traffic. In Wireshark (VM-1), change the filter from SSH to DHCP. In PowerShell, type "ipconfig /renew". 
 </p>
 <br />
 

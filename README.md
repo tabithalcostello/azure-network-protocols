@@ -20,7 +20,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 <h2>High-Level Steps</h2>
 
-- Create VM (Windows and Ubuntu Server [Linux])
+- Create Virtual Machines (VMs) (Windows and Ubuntu Server [Linux])
 - Download, Install, and Run Wireshark
 - PowerShell (Ping)
 - Monitor Internet Control Message Protocol (ICMP) Traffic
@@ -35,7 +35,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p align="center">
 <img src="https://i.imgur.com/9ERubqL.png" height="70%" width="70%" alt="VMs Created"/>
 </p>
-<p> Create two Virtual Machines (VMs) in Microsoft Azure. VM-1 will have Operating System (OS) of Windows 10 with the size of 2 virtual computer processing units (vcpus) and 16 GiB memory. VM-2 will have OS of Ubuntu also known as Linux with the 2vcpus and 16 GiB memory. (Make sure the virtual network matches VM-1's.)
+<p> Create two Virtual Machines (VMs) in Microsoft Azure. VM-1 will have Operating System (OS) of Windows 10 with the size of 2 virtual computer processing units (vcpus) and 16 GiB memory. VM-2 will have OS of Ubuntu Server also known as Linux with the 2 vcpus and 16 GiB memory. (Make sure the virtual network matches VM-1's.)
 </p>
 <br />
 
@@ -49,28 +49,28 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p align="center">
 <img src="https://i.imgur.com/UfwcLAJ.png" height="70%" width="70%" alt="Capture Packets"/>
 </p>
-<p> Here we can view the different protocol traffic taking place. On the tool bar, type "ICMP". It will filter the Internet Control Message Protocol only. 
+<p> Here we can view the different protocol traffic taking place. On the tool bar, type "ICMP". It will filter for the Internet Control Message Protocol (ICMP) only. 
 </p>
 <br />
 
 <p align="center">
 <img src="https://i.imgur.com/RCMWkw5.png" height="50%" width="30%" alt="Powershell"/> <img src="https://i.imgur.com/fRt3cIY.png" height="50%" width="50%" alt="Powershell"/>
 </p>
-<p> Collect VM-2's private ip address (10.0.0.5). In VM-1, open up Power Shell. Type "ping 10.0.0.5" and hit Enter (or Return). VM-1 communicated with VM-2. Returning to Wireshark, we can view this traffic. 
+<p> Collect VM-2's private ip address (10.0.0.5). In VM-1, open up Power Shell. Type "ping 10.0.0.5" and hit Enter (or Return). In Wireshark, we can view the communication between VM-1 and VM-2.  
 </p>
 <br />
 
 <p align="center">
 <img src="https://i.imgur.com/B50rUAo.png" height="50%" width="30%" alt="VM-2's Firewall Settings"/> <img src="https://i.imgur.com/vUtl66l.png" height="80%" width="40%" alt="VM-2's Firewall Settings"/>
 </p>
-<p> Go to Network Security Groups in Microsoft Azure. Select VM-2. In the Inbound Security Rules, Add Rule. Source: Any, Source Port Range: Any (*), Destination: Any, Service: Custom, Destination Port: Protocol ICMP, Action: Denied, Priority: 200, Name: DenyAnyCustomAnyInbound. (Priority is set at 200 to affect before the SSH protocol.)
+<p> We can change firewall settings to block or permit specific communication from different protocols. Go to Network Security Groups in Microsoft Azure. Select VM-2. In the Inbound Security Rules, Add Rule. Source: Any, Source Port Range: Any (*), Destination: Any, Service: Custom, Destination Port: Protocol ICMP, Action: Denied, Priority: 200, Name: DenyAnyCustomAnyInbound. (Priority is set at 200 to affect before the SSH protocol.)
 </p>
 <br />
 
 <p align="center">
 <img src="https://i.imgur.com/JnQOgCg.png" height="70%" width="40%" alt="PowerShell Change"/> <img src="https://i.imgur.com/cmm5vcA.png" height="70%" width="40%" alt="Wireshark Change"/>
 </p>
-<p> Go to VM-1. View how changing VM-2’s Firewall affected PowerShell and Wireshark. (PowerShell - Request Timed Out. Wireshark - No Response Found)
+<p> Go to VM-1. View how changing VM-2’s Firewall affected PowerShell and Wireshark. (PowerShell - Request Timed Out. Wireshark - No Response Found). By changing VM-2 firewall to deny ICMP, VM-2 is essentially blocking VM-1's ping to communicate.  
 </p>
 <br />
 
@@ -98,7 +98,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p align="center">
 <img src="https://i.imgur.com/vLd8e8A.png" height="50%" width="50%" alt="Exit VM-2"/>
 </p>
-<p> To exit out of VM-2, in the command line type "exit" and click Enter (or Return). The Linux command line returns to Vm-1's Window's Command Line of "PS C:\Users\labuser>". 
+<p> To exit out of VM-2, in the command line type "exit" and click Enter (or Return). The Linux command line returns to VM-1's Window's Command Line of "PS C:\Users\labuser>". 
 </p>
 <br />
 
@@ -119,7 +119,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p align="center">
 <img src="https://i.imgur.com/V6uHCzc.png" height="43%" width="30%" alt="UDP in PowerShell"/> <img src="https://i.imgur.com/HdcsNFM.png" height="70%" width="50%" alt="UDP in Wireshark"/>
 </p>
-<p> Monitor UDP Traffic. In Wireshark (VM-1), change the filter from DNS to UDP. In PowerShell, type "nslookup disney.com". Then, go back to Wireshark to view the UDP traffic. In Wireshark, you can change the filters to focus on specific traffic. For instance, changing the filter from DNS to RDP (Remote Desktop Protocol). In order to do this tutorial, RDP was used to establish a connection to our VMs.
+<p> Monitor UDP Traffic. In Wireshark (VM-1), change the filter from DNS to UDP. In PowerShell, type "nslookup disney.com". Then, go back to Wireshark to view the UDP traffic. In Wireshark, filters can be changed to focus on specific traffic. For instance, changing the filter from DNS to RDP (Remote Desktop Protocol). In order to do this tutorial, RDP was used to establish a connection to the VMs. 
 </p>
 <br />
 
